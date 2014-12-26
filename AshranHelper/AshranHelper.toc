@@ -1,0 +1,4 @@
+## Interface: 60000
+## Title: AshranHelper
+## SavedVariables: AshranHelperInviteEnabled
+AshranHelper.lua
