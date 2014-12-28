@@ -1,4 +1,6 @@
 ## Interface: 60000
 ## Title: AshranHelper
-## SavedVariables: AshranHelperInviteEnabled
+## Version: 1.01
+## Notes: Plays a sound on Ashran invite, filters Broken Bones spam and can auto-invite to raid
+## SavedVariables: AshranHelperInviteEnabled, AshranHelperInvites, AshranHelperBones
 AshranHelper.lua
