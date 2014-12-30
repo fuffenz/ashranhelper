@@ -9,15 +9,19 @@ local keywords={"inv","invite"}
 local updateTimer = 0
 local playCounter = 0
 local ashranAreaID = 978;
--- simple way to localize names for non-English clients
-local i18nAshran = GetMapNameByID(ashranAreaID):lower() -- "ashran";
-local i18nBrokenBones = GetItemInfo(118043) -- "Broken Bones"
+
+local i18nAshran = "ashran";
+local i18nBrokenBones = "Broken Bones"
 local isInAshran = false;
 
 function eventHandler(self,e,...) 
 	local arg1 = ...
 
 	if (e == "ADDON_LOADED" and arg1 == "AshranHelper") then
+		-- simple way to localize names for non-English clients
+		i18nAshran = GetMapNameByID(ashranAreaID):lower() -- "ashran";
+		i18nBrokenBones = GetItemInfo(118043) -- "Broken Bones"
+
 		if AshranHelperInviteEnabled == nil then
 			AshranHelperInviteEnabled = false;
 		end
@@ -73,7 +77,8 @@ end
 --  Filter out the spammy Broken Bones loot messages
 --
 function lootFilter(self, event, msg) 
-	if (msg ~= nil and msg:find(i18nBrokenBones)) then
+
+	if (msg ~= nil and i18nBrokenBones ~= nil and msg:find(i18nBrokenBones)) then
 		AshranHelperBones = AshranHelperBones + 1
 		return true
 	end
@@ -89,7 +94,7 @@ function uiUpdate(self, elapsed)
 		for i=1, MAX_WORLD_PVP_QUEUES do
 		    local queueStatus, zone = GetWorldPVPQueueStatus(i)   
 			
-			if(zone ~= nil and zone:lower() == i18nAshran) then
+			if(zone ~= nil and i18nAshran ~= nil and zone:lower() == i18nAshran) then
 			   	if(queueStatus == "confirm") then
 			   		if(playCounter == 0) then 
 						PlaySoundFile("sound\\interface\\levelup2.ogg", "Master")
@@ -126,7 +131,7 @@ function slashCommand(arg)
 		inviteStatus()
 	else
 		inviteStatus()
-		print("So far, " .. AshranHelperBones .. " bone spam suppressed and " .. AshranHelperInvites .. " invites sent")
+		print("So far, " .. AshranHelperBones .. " " .. i18nBrokenBones .. " spam suppressed and " .. AshranHelperInvites .. " invites sent")
 		print "To enable or disable auto-invite, use:"
 		print "/ashranhelper auto"
 	end
