@@ -1,0 +1,15 @@
+1.04
+Minor bug fix, added more filters (thx @criticalException for suggestion)
+
+1.03
+Better initialization of variables
+Invite via whispers should now work again
+Added separate "event" invite handling
+
+1.02
+Minor bug fix, lua error on some garrison loot
+
+1.01
+A few changes to make this work better for non-English clients.  
+
+
